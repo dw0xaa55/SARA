@@ -1,0 +1,1034 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="curveEditorWindow">
+    <property name="width_request">160</property>
+    <property name="height_request">205</property>
+    <property name="can_focus">False</property>
+    <property name="resizable">False</property>
+    <property name="window_position">mouse</property>
+    <property name="default_width">160</property>
+    <property name="default_height">185</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed" id="fixedGridEditor">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkButton" id="btn_baseline">
+            <property name="label" translatable="yes">Calculate Baseline</property>
+            <property name="width_request">150</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_baseline_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_substractBaseline">
+            <property name="label" translatable="yes">Substract Baseline</property>
+            <property name="width_request">150</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_substractBaseline_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">45</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_gaussFit">
+            <property name="label" translatable="yes">Gauss Fit Area</property>
+            <property name="width_request">150</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_gaussFit_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">85</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_clearCurve">
+            <property name="label" translatable="yes">Clear</property>
+            <property name="width_request">150</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_clearCurve_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">165</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_saveGauss">
+            <property name="label" translatable="yes">Save</property>
+            <property name="width_request">150</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_saveGauss_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">125</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTreeStore" id="storeMap">
+    <columns>
+      <!-- column-name Galactic -->
+      <column type="gfloat"/>
+      <!-- column-name Distance -->
+      <column type="gfloat"/>
+      <!-- column-name r+ -->
+      <column type="gfloat"/>
+      <!-- column-name r- -->
+      <column type="gfloat"/>
+      <!-- column-name r -->
+      <column type="gfloat"/>
+      <!-- column-name X-Coordinates -->
+      <column type="gfloat"/>
+      <!-- column-name Y-Coordinates -->
+      <column type="gfloat"/>
+      <!-- column-name Velocity -->
+      <column type="gfloat"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="mapWindow">
+    <property name="width_request">1300</property>
+    <property name="height_request">560</property>
+    <property name="can_focus">False</property>
+    <property name="window_position">center</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed" id="fixedGridMap">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkButton" id="btn_closeMap">
+            <property name="label" translatable="yes">Close Map</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_closeMap_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">405</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_export3dMap">
+            <property name="label" translatable="yes">Export 3D Map</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_export3dMap_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">285</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_exportMapImage">
+            <property name="label" translatable="yes">Export Map Image</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_exportMapImage_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">145</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkDrawingArea" id="mapDrawingArea">
+            <property name="width_request">490</property>
+            <property name="height_request">490</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <signal name="draw" handler="on_mapDrawingArea_draw" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">45</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledDistanceValues">
+            <property name="width_request">795</property>
+            <property name="height_request">530</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkViewport" id="viewportMap">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkTreeView" id="treeMapValues">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="model">storeMap</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="mapSelection">
+                        <signal name="changed" handler="on_mapSelection_changed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colGalLon">
+                        <property name="title" translatable="yes">Gal. Long (°)</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crGalLon"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colVelObs">
+                        <property name="title" translatable="yes">Observed Velocity</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crVelObs"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colDistR">
+                        <property name="title" translatable="yes">Dist. Center-&gt;Cloud (R)</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crDistR"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colRplus">
+                        <property name="title" translatable="yes">r+</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crRplus"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colRminus">
+                        <property name="title" translatable="yes">r-</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crRminus"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colDistSol">
+                        <property name="title" translatable="yes">r</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crDistSol"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colX">
+                        <property name="title" translatable="yes">X-Coordinates</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crX"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colY">
+                        <property name="title" translatable="yes">Y-Coordinates</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crY"/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">500</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTreeStore" id="treeStore">
+    <columns>
+      <!-- column-name fileList -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="window">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Spectral Analyzer for Radio Astronomy</property>
+    <property name="window_position">center</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed" id="fixedGrid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkMenuBar" id="menubar">
+            <property name="name">menubar</property>
+            <property name="width_request">900</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">_File</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_clear">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Clear</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_clear_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_clear_deselect" swapped="no"/>
+                        <signal name="select" handler="on_mi_clear_select" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_open">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes" context="Öffnen">Open</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_open_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_open_deselect" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_openStack">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Open Stack</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_openStack_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_openStack_deselect" swapped="no"/>
+                        <signal name="select" handler="on_mi_openStack_select" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_save">
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Save</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_save_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_save_deselect" swapped="no"/>
+                        <signal name="select" handler="on_mi_save_select" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_exit">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Exit</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_exit_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_exit_deselect" swapped="no"/>
+                        <signal name="select" handler="on_mi_exit_select" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">_Edit</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">_Color</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="mi_blackWhite">
+                                <property name="visible">True</property>
+                                <property name="sensitive">False</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Black and White</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_mi_blackWhite_activate" swapped="no"/>
+                                <signal name="deselect" handler="on_mi_blackWhite_deselect" swapped="no"/>
+                                <signal name="select" handler="on_mi_blackWhite_select" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="mi_temperature">
+                                <property name="visible">True</property>
+                                <property name="sensitive">False</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Temperature</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_mi_temperature_activate" swapped="no"/>
+                                <signal name="deselect" handler="on_mi_temperature_deselect" swapped="no"/>
+                                <signal name="select" handler="on_mi_temperature_select" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="mi_custom">
+                                <property name="visible">True</property>
+                                <property name="sensitive">False</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Custom</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="on_mi_custom_activate" swapped="no"/>
+                                <signal name="deselect" handler="on_mi_custom_deselect" swapped="no"/>
+                                <signal name="select" handler="on_mi_custom_select" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">_Tools</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_curve">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Curve Editor</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_curve_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_curve_deselect" swapped="no"/>
+                        <signal name="select" handler="on_mi_curve_select" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_map">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Generate Map</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_map_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_map_deselect" swapped="no"/>
+                        <signal name="select" handler="on_mi_map_select" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">_?</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_version">
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Version</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_mi_version_activate" swapped="no"/>
+                        <signal name="deselect" handler="on_mi_version_deselect" swapped="no"/>
+                        <signal name="select" handler="on_mi_version_select" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="mi_help">
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Help</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledWindow">
+            <property name="width_request">250</property>
+            <property name="height_request">550</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkViewport" id="viewportTextview">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkTextView" id="displayTextview">
+                    <property name="visible">True</property>
+                    <property name="sensitive">False</property>
+                    <property name="can_focus">True</property>
+                    <property name="double_buffered">False</property>
+                    <property name="wrap_mode">word</property>
+                    <property name="monospace">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">645</property>
+            <property name="y">25</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lbl_header">
+            <property name="width_request">200</property>
+            <property name="height_request">150</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="label" translatable="yes">        --- NO DATA LOADED ---</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
+            <property name="yalign">0</property>
+          </object>
+          <packing>
+            <property name="x">441</property>
+            <property name="y">25</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_fileAdd">
+            <property name="label" translatable="yes">+</property>
+            <property name="width_request">-1</property>
+            <property name="height_request">-1</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_btn_fileAdd_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_fileDel">
+            <property name="label" translatable="yes">-</property>
+            <property name="width_request">-1</property>
+            <property name="height_request">-1</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_fileDel_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">60</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_filePreview">
+            <property name="label" translatable="yes">Preview</property>
+            <property name="width_request">-1</property>
+            <property name="height_request">-1</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_filePreview_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">115</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledFileList">
+            <property name="width_request">430</property>
+            <property name="height_request">150</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkViewport" id="viewportFileList">
+                <property name="width_request">430</property>
+                <property name="height_request">150</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkTreeView" id="treeViewFiles">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="model">treeStore</property>
+                    <property name="search_column">0</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="fileSelection">
+                        <signal name="changed" handler="on_fileSelection_changed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="filenames">
+                        <property name="title" translatable="yes">monitored Files</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="filePath"/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">25</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkDrawingArea" id="graphDraw">
+            <property name="width_request">560</property>
+            <property name="height_request">355</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <signal name="button-press-event" handler="on_graphDraw_button_press_event" swapped="no"/>
+            <signal name="draw" handler="on_graphDraw_draw" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">220</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">-300</property>
+          </object>
+          <packing>
+            <property name="x">34</property>
+            <property name="y">550</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">-200</property>
+          </object>
+          <packing>
+            <property name="x">122</property>
+            <property name="y">550</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">-100</property>
+          </object>
+          <packing>
+            <property name="x">210</property>
+            <property name="y">550</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">0</property>
+          </object>
+          <packing>
+            <property name="x">297</property>
+            <property name="y">550</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">100</property>
+          </object>
+          <packing>
+            <property name="x">366</property>
+            <property name="y">550</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">200</property>
+          </object>
+          <packing>
+            <property name="x">452</property>
+            <property name="y">550</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">300</property>
+          </object>
+          <packing>
+            <property name="x">540</property>
+            <property name="y">550</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">10</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">510</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">20</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">475</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">30</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">440</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp4">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">40</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">405</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp5">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">50</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">370</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp6">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">60</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">335</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp7">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">70</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">300</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp8">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">80</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">265</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblTemp9">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">90</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">230</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btnTempIncrease">
+            <property name="label" translatable="yes">^</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btnTempIncrease_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">580</property>
+            <property name="y">350</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btnTempDecrease">
+            <property name="label" translatable="yes">v</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btnTempDecrease_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">580</property>
+            <property name="y">400</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btnPrevSelection">
+            <property name="label" translatable="yes">^</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btnPrevSelection_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">330</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btnNextSelection">
+            <property name="label" translatable="yes">v</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btnNextSelection_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">385</property>
+            <property name="y">180</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTreeStore" id="treeStoreGauss">
+    <columns>
+      <!-- column-name Longitude -->
+      <column type="gfloat"/>
+      <!-- column-name Latitude -->
+      <column type="gfloat"/>
+      <!-- column-name Velocity -->
+      <column type="gfloat"/>
+      <!-- column-name Temperature -->
+      <column type="gfloat"/>
+    </columns>
+  </object>
+  <object class="GtkWindow" id="gaussWindow">
+    <property name="width_request">500</property>
+    <property name="height_request">350</property>
+    <property name="can_focus">False</property>
+    <property name="resizable">False</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed" id="fixedGridGauss">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledGaussValues">
+            <property name="width_request">500</property>
+            <property name="height_request">300</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkViewport" id="viewportGauss">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkTreeView" id="treeViewGauss">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="model">treeStoreGauss</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="gaussSelection">
+                        <signal name="changed" handler="on_gaussSelection_changed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colGaussLon">
+                        <property name="title" translatable="yes">Longitude (°)</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crGaussLon"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colGaussLat">
+                        <property name="title" translatable="yes">Latitude (°)</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crGaussLat"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colGaussVel">
+                        <property name="title" translatable="yes">Velocity (km/s)</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crGaussVel"/>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="colGaussTemp">
+                        <property name="title" translatable="yes">Temperature (°K)</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="crGaussTemp"/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_deleteGaussCoords">
+            <property name="label" translatable="yes">delete</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_deleteGaussCoords_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">305</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_exportGaussCoords">
+            <property name="label" translatable="yes">export</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_exportGaussCoords_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">170</property>
+            <property name="y">305</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_deleteAllGaussCoords">
+            <property name="label" translatable="yes">delete all</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_btn_deleteAllGaussCoords_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">80</property>
+            <property name="y">305</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
